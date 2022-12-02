@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <script src="js/script.js" defer> </script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header-box">
@@ -24,23 +25,36 @@
                 <div class="score" id="computer-score">0</div>
             </div>
         </div>
+
         <div class="result">
             <h3 class="result-text">result</h3>
         </div>
 
         <div class="choices">
-            <div class="user-choice" id="container">
+            <div class="user-choice">
                 <h3 class="header-text">Your move</h3>
                 <div id="container">
-                    <button class="game-btn" id="rock">Rock</button>
-                    <button class="game-btn" id="paper">Paper</button>
-                    <button class="game-btn" id="scissor">Scissor</button>
+                    <button class="game-btn" id="rock-btn">
+                        <img src="img/rock.jpg" alt="rock">
+                    </button>
+                    <button class="game-btn" id="paper-btn">
+                        <img src="img/paper.jpg" alt="paper">
+                    </button>
+                    <button class="game-btn" id="scissor-btn">
+                        <img src="img/scissor.jpg" alt="scissor">
+                    </button>
                 </div>
-            </div>
-            <div class="computer-choice">
+            </div class="computer-choice">
+                <h3 class="header-text">Computer</h3>
+                <img src="img/scissor.jpg" alt="computerimage" id="comp-img">
             </div>
         </div>
+
+        <button class="newgame-btn">New Game</button>
     </main>
 
+    <footer>
+        <p>The Odin Project 2022</p>
+    </footer>
 </body>
 </html>

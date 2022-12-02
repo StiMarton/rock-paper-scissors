@@ -1,27 +1,59 @@
 
-/* Rock-paper-scissor in Javascript */
+// Rock-paper-scissor in Javascript 
 
-/* The game can now be replayed five times.
-Fix the winner message when the game is over
-Fix the timer so it don't count when players don't type "rock, paper or scissor" correctly */
+/* Hands as individual variables
+const rock = document.getElementById('rock-btn');
+const paper = document.getElementById('paper-btn');
+const scissor = document.getElementById('scissor-btn');
+*/
 
+const userSelection = document.querySelectorAll('.game-btn');
+const imgComp = document.querySelector('#comp-img');
+const resPanel = document.querySelector('.result');
+const resText = document.querySelector('.result-text');
+const userScoreDisplay = document.querySelector('#user-score');
+const computerScoreDisplay = document.querySelector('#computer-score');
+const btnNewGame = document.querySelector('.newgame-btn');
 
-
-/*Declare the scores*/
 let userScore = 0;
 let computerScore = 0;
-
-//Make a variable that contains the strings "rock, paper and scissor"
+let gameRound = 0;
 var hand = ["rock", "paper", "scissor"];
+
+init();
+
+//DOM Select hands from forEach, instead of individual variables
+userSelection.forEach((button) => {
+    button.addEventListener('click', () => {
+        getComputerChoice(hand);
+        playRound(button.id);
+    });
+}); 
+
+btnNewGame.addEventListener('click', init);
+
+// Restarts the game
+function init() {
+    imgComp.style.display = 'none';
+    resPanel.style.visibility = 'hidden';
+    userScore = 0;
+    computerScore = 0;
+    gameRound = 0;
+    userScoreDisplay.textContent = '0';
+    computerScoreDisplay.textContent = '0';
+}
 
 //The computer returns rock, paper or scissor at random 
 function getComputerChoice (hand) {
     return hand[Math.floor(Math.random()*hand.length)];
         }
-    let computerSelection = getComputerChoice(hand);
+    computerSelection = getComputerChoice(hand);
 
+    console.log(computerSelection)
+
+/*
 // This function runs the entire game up to five times 
-function game() { /*
+function game() { 
     for (let i = 1; i <= 6; i++) {
         // If the computer has the most point after five rounds, it wins
         if (i == 6 && computerScore > userScore) {
@@ -36,51 +68,46 @@ function game() { /*
             console.log("Game is over, you win the game!");
 
         } else { 
-            /* -A prompt gets the input from user, and stores it in a variable.
-            - The parameter must be case-insensitive
-            - When user selects a hand the computer also selects a hand
-            let userSelection = prompt('Please type "rock, paper or scissor".');
+*/
+//A single round, user against computer
+function playRound (userSelection, computerSelection) {
+    if (userSelection == "rock" && computerSelection == "scissor"
+        || userSelection == "paper" && computerSelection == "rock"
+        || userSelection == "scissor" && computerSelection == "paper") {
+            winning();
+    } else if (userSelection == computerSelection) {
+        resPanel.style.visibility = 'visible';
+        resText.textContent = 'Draw!';
+    } else if (userSelection == "rock" && computerSelection == "paper"
+        || userSelection == "paper" && computerSelection == "scissor"
+        || userSelection == "scissor" && computerSelection == "rock") {
+        losing();
+    } else {
+        console.log('nothing')
+    }
+    console.log(userSelection, computerSelection);
+}       
 
-                if (userSelection.toLowerCase() === "rock" || userSelection.toLocaleLowerCase() === "paper" || userSelection.toLocaleLowerCase() === "scissor") {
-                    console.log(`You select ${userSelection}`);
-                    console.log(`The computer selects ${computerSelection}`);
-                } else {
-                    alert('Please type "rock, paper or scissor"');
-                }
-        */
+function winning() {
+    userScore++;
+    resPanel.style.visibility = 'visible';
+    resText.textContent = 'You win!';
+    userScoreDisplay.textContent = userScore;
+}
 
+function losing() {
+    computerScore++
+    resPanel.style.visibility = 'visible';
+    resText.textContent = 'You loose!';
+    userScoreDisplay.textContent = userScore;
+}
+    // console.log(playRound(userSelection, computerSelection));
+    // console.log(`Score is ${userScore} to ${computerScore} at round ${i}`);  
 
-            //A single round, user against computer
-            function playRound (userSelection, computerSelection) {
-                if (userSelection == "rock" && computerSelection == "scissor"
-                    || userSelection == "paper" && computerSelection == "rock"
-                    || userSelection == "scissor" && computerSelection == "paper") {
-                    userScore++;
-                    return `You win this round, ${userSelection} beats ${computerSelection}.`;
-                } else if (userSelection == computerSelection) {
-                    return "Draw! Do it again.";
-                } else if (userSelection == "rock" && computerSelection == "paper"
-                    || userSelection == "paper" && computerSelection == "scissor"
-                    || userSelection == "scissor" && computerSelection == "rock") {
-                    computerScore++
-                    return `You lose this round, ${computerSelection} beats ${userSelection}.`;
-                } else {
-                    return "No game";
-                }
-
-                
-            }
-                // console.log(playRound(userSelection, computerSelection));
-                // console.log(`Score is ${userScore} to ${computerScore} at round ${i}`);  
-                //DOM Stuff
-                const buttons = document.querySelectorAll('button');
-                buttons.forEach((button) => {
-                    button.addEventListener('click', (playRound) => {
-                        console.log(button.id);
-    });
-});       
+         /*      
         }
         
-    /*}
-}*/
-game();
+    }
+}
+
+game();*/
