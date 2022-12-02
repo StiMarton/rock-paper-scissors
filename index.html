@@ -8,10 +8,39 @@
     <script src="js/script.js" defer> </script>
 </head>
 <body>
-    <div id="container">
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissor">Scissor</button>
-    </div>
+    <header class="header-box">
+        <h1 class="header-text">Rock - Paper - Scissors Game</h1>
+    </header>
+
+    <main>
+        <div class="scoreboard">
+            <h2>Score Board</h2>
+            <div class="score-names">
+                <p class="name">You</p>
+                <p class="name">Computer</p>
+            </div>
+            <div class="score-points">
+                <div class="score" id="user-score">0</div>
+                <div class="score" id="computer-score">0</div>
+            </div>
+        </div>
+        <div class="result">
+            <h3 class="result-text">result</h3>
+        </div>
+
+        <div class="choices">
+            <div class="user-choice" id="container">
+                <h3 class="header-text">Your move</h3>
+                <div id="container">
+                    <button class="game-btn" id="rock">Rock</button>
+                    <button class="game-btn" id="paper">Paper</button>
+                    <button class="game-btn" id="scissor">Scissor</button>
+                </div>
+            </div>
+            <div class="computer-choice">
+            </div>
+        </div>
+    </main>
+
 </body>
 </html>
