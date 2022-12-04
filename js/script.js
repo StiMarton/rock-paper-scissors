@@ -1,12 +1,15 @@
 
 // Rock-paper-scissor in Javascript 
 
-/* Hands as individual variables
-const rock = document.getElementById('rock-btn');
-const paper = document.getElementById('paper-btn');
-const scissor = document.getElementById('scissor-btn');
-*/
+const rock = 'https://github.com/StiMarton/rock-paper-scissors/blob/rps-ui/img/rock.jpg?raw=true';
+const paper = 'https://github.com/StiMarton/rock-paper-scissors/blob/rps-ui/img/paper.jpg?raw=true';
+const scissor = 'https://github.com/StiMarton/rock-paper-scissors/blob/rps-ui/img/scissor.jpg?raw=true';
+const handImgArray = [rock, paper, scissor];
 
+const img = document.getElementsByClassName('image');
+const rockId = document.getElementById('rock');
+const paperId = document.getElementById('paper');
+const scissorId = document.getElementById('scissor');
 const userSelection = document.querySelectorAll('.game-btn');
 const imgComp = document.querySelector('#comp-img');
 const resPanel = document.querySelector('.result');
@@ -18,19 +21,9 @@ const btnNewGame = document.querySelector('.newgame-btn');
 let userScore = 0;
 let computerScore = 0;
 let gameRound = 0;
-var hand = ["rock", "paper", "scissor"];
+const hand = ["rock", "paper", "scissor"];
 
 init();
-
-//DOM Select hands from forEach, instead of individual variables
-userSelection.forEach((button) => {
-    button.addEventListener('click', () => {
-        getComputerChoice(hand);
-        playRound(button.id);
-    });
-}); 
-
-btnNewGame.addEventListener('click', init);
 
 // Restarts the game
 function init() {
@@ -43,13 +36,23 @@ function init() {
     computerScoreDisplay.textContent = '0';
 }
 
+btnNewGame.addEventListener('click', init);
+
+//DOM Select hands from forEach, instead of individual variables
+userSelection.forEach((button) => {
+    button.addEventListener('click', () => {
+        getComputerChoice(hand);
+        playRound(button.id, getComputerChoice(hand));
+    });
+}); 
+
 //The computer returns rock, paper or scissor at random 
 function getComputerChoice (hand) {
-    return hand[Math.floor(Math.random()*hand.length)];
-        }
-    computerSelection = getComputerChoice(hand);
-
-    console.log(computerSelection)
+    const randNum = Math.floor(Math.random()* 3);
+    imgComp.src = handImgArray[randNum];
+    return hand[randNum];
+        }   
+let computerSelection = getComputerChoice(hand);
 
 /*
 // This function runs the entire game up to five times 
@@ -77,11 +80,13 @@ function playRound (userSelection, computerSelection) {
             winning();
     } else if (userSelection == computerSelection) {
         resPanel.style.visibility = 'visible';
+        imgComp.style.display = 'inline';
         resText.textContent = 'Draw!';
+        console.log('draw');
     } else if (userSelection == "rock" && computerSelection == "paper"
         || userSelection == "paper" && computerSelection == "scissor"
         || userSelection == "scissor" && computerSelection == "rock") {
-        losing();
+            losing();
     } else {
         console.log('nothing')
     }
@@ -90,16 +95,22 @@ function playRound (userSelection, computerSelection) {
 
 function winning() {
     userScore++;
+    imgComp.style.display = 'inline';
     resPanel.style.visibility = 'visible';
     resText.textContent = 'You win!';
     userScoreDisplay.textContent = userScore;
+    computerScoreDisplay.textContent = computerScore;
+    console.log('player won round');
 }
 
 function losing() {
-    computerScore++
+    computerScore++;
+    imgComp.style.display = 'inline';
     resPanel.style.visibility = 'visible';
-    resText.textContent = 'You loose!';
+    resText.textContent = 'You lose!';
     userScoreDisplay.textContent = userScore;
+    computerScoreDisplay.textContent = computerScore;
+    console.log('player lose round');
 }
     // console.log(playRound(userSelection, computerSelection));
     // console.log(`Score is ${userScore} to ${computerScore} at round ${i}`);  
