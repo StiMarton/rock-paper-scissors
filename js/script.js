@@ -34,6 +34,9 @@ function init() {
     gameRound = 0;
     userScoreDisplay.textContent = '0';
     computerScoreDisplay.textContent = '0';
+    document.querySelector('#rock').disabled = false;
+    document.querySelector('#paper').disabled = false;
+    document.querySelector('#scissor').disabled = false;
 }
 
 btnNewGame.addEventListener('click', init);
@@ -81,7 +84,7 @@ function playRound (userSelection, computerSelection) {
     } else if (userSelection == computerSelection) {
         resPanel.style.visibility = 'visible';
         imgComp.style.display = 'inline';
-        resText.textContent = 'Draw!';
+        resText.textContent = 'Draw.';
         console.log('draw');
     } else if (userSelection == "rock" && computerSelection == "paper"
         || userSelection == "paper" && computerSelection == "scissor"
@@ -97,20 +100,43 @@ function winning() {
     userScore++;
     imgComp.style.display = 'inline';
     resPanel.style.visibility = 'visible';
-    resText.textContent = 'You win!';
+    resText.textContent = 'You score!';
     userScoreDisplay.textContent = userScore;
     computerScoreDisplay.textContent = computerScore;
     console.log('player won round');
+    declareWinner();
 }
 
 function losing() {
     computerScore++;
     imgComp.style.display = 'inline';
     resPanel.style.visibility = 'visible';
-    resText.textContent = 'You lose!';
+    resText.textContent = 'Computer score.';
     userScoreDisplay.textContent = userScore;
     computerScoreDisplay.textContent = computerScore;
     console.log('player lose round');
+    declareWinner();
+}
+
+function declareWinner() {
+    if (computerScore == 5 || userScore == 5) {
+        document.querySelector('#rock').disabled = true;
+        document.querySelector('#paper').disabled = true;
+        document.querySelector('#scissor').disabled = true;
+            if (computerScore == 5 && userScore == 1 || userScore == 0) {
+                resText.textContent = 'YOU LOSE! You suck at this, try again.';
+            } else if (computerScore == 5 && userScore == 4) {
+                resText.textContent = 'YOU LOSE! So close to victory, try again!'
+            } else if (computerScore == 5) {
+                resText.textContent = 'YOU LOSE! Try again!';
+            } else if (userScore == 5 && computerScore == 1 || computerScore == 0) {
+                resText.textContent = 'YOU WIN! You are a rock-paper-scissor pro!';
+            } else if (userScore == 5 && computerScore == 4) {
+                resText.textContent = 'YOU WIN! That was a close call!';
+            } else if (userScore == 5) {
+                resText.textContent = 'YOU WIN!';
+        }
+    }
 }
     // console.log(playRound(userSelection, computerSelection));
     // console.log(`Score is ${userScore} to ${computerScore} at round ${i}`);  
