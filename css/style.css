@@ -9,37 +9,19 @@ body {
     font-family: Roboto, sans-serif;
     text-align: center;
     min-height: 100vh;
-    background-color: #cce6ff;
+    background-color: #1D2A35;
+    color: white;
 
+}
+
+header, footer, .rules-text {
+    color: black;
+    background-color: #805500;
 }
 
 header {
-    background-color: #ffd699;
     text-align: center;
     padding: 20px 0;
-}
-
-h1 {
-    font-size: 3rem;
-}
-
-.scoreboard {
-    display: flex;
-    flex-direction: column;
-}
-
-.score-names, .score-points {
-    display: flex;
-    justify-content: center;
-    gap: 5em;
-}
-
-.choices {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
 .header-text {
@@ -50,9 +32,49 @@ h1 {
     margin-bottom: 2rem;
 }
 
-.user-choice, .computer-choice {
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    margin-top: 0.5em;
+}
+
+.rules-text {
+    padding-bottom: 10px;
+}
+
+.score-names, .score-points {
     display: flex;
-    gap: 1em;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 25%;
+    margin: auto;
+}
+
+.name, .score {
+    border: 2px solid black;
+    width: 50%;
+}
+
+.name {
+    padding: 10px 0;
+    font-size: 1.3rem;
+}
+
+.score {
+    font-size: 4rem;
+    color: #990000;
+}
+
+.result {
+    margin: 1.5rem;
+    font-size: 2rem;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-around;
 }
 
 img {
@@ -70,11 +92,25 @@ img {
     transform: scale(1.1);
 }
 
+.newgame-btn {
+    margin-top: 3em;
+    padding: 20px 30px;
+    background-color: transparent;
+    color: white;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.newgame-btn:hover {
+    background-color: white;
+    color: #1D2A35;
+}
+
 footer {
     display: flex;
     margin-top: auto;
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    background-color: #ffd699
 }
