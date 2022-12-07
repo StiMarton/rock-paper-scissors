@@ -1,9 +1,9 @@
 
 // Rock-paper-scissor in Javascript 
 
-const rock = 'https://github.com/StiMarton/rock-paper-scissors/blob/rps-ui/img/rock.jpg?raw=true';
-const paper = 'https://github.com/StiMarton/rock-paper-scissors/blob/rps-ui/img/paper.jpg?raw=true';
-const scissor = 'https://github.com/StiMarton/rock-paper-scissors/blob/rps-ui/img/scissor.jpg?raw=true';
+const rock = 'https://github.com/StiMarton/rock-paper-scissors/blob/main/img/rock.jpg?raw=true';
+const paper = 'https://github.com/StiMarton/rock-paper-scissors/blob/main/img/paper.jpg?raw=true';
+const scissor = 'https://github.com/StiMarton/rock-paper-scissors/blob/main/img/scissor.jpg?raw=true';
 const handImgArray = [rock, paper, scissor];
 
 const img = document.getElementsByClassName('image');
